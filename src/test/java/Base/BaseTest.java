@@ -11,13 +11,16 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup() {
-        DriverFactory.initDriver("chrome");
-        driver = DriverFactory.getDriver();
+        // Initialize WebDriver
+        driver = DriverFactory.initDriver();
+
+        // Navigate to URL
         driver.get("https://practicetestautomation.com/practice-test-login/");
     }
 
     @AfterMethod
     public void tearDown() {
+        // Quit WebDriver
         DriverFactory.quitDriver();
     }
 }
