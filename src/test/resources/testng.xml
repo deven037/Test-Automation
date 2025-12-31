@@ -1,8 +1,14 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Automation Suite" parallel="false">
-    <test name="Login Tests">
-        <classes>
-            <class name="tests.test1"/>
-        </classes>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation Suite">
+
+    <listeners>
+        <listener class-name="listeners.ExtentListener"/>
+    </listeners>
+
+    <test name="All Tests">
+        <packages>
+            <package name="tests"/>
+        </packages>
     </test>
+
 </suite>

@@ -1,22 +1,20 @@
 package tests;
 
+import Base.BaseTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import Pages.LoginPage;
-import Base.BaseTest;
 
 public class test1 extends BaseTest {
 
     @Test
-    public void verifyValidLogin() {
-        LoginPage lp = new LoginPage(driver);
+    public void validLoginTest() {
 
-        lp.enterUsername("student");
-        lp.enterPassword("Password123");
-        lp.clickLogin();
+        driver.findElement(By.id("username")).sendKeys("student");
+        driver.findElement(By.id("password")).sendKeys("Password123");
+        driver.findElement(By.id("submit")).click();
 
-        Assert.assertTrue(lp.isLoginSuccessful(), "Login failed!");
-        System.out.println(lp.getSuccessMessage());
+        String text = driver.findElement(By.tagName("h1")).getText();
+        Assert.assertTrue(text.contains("Logged In"));
     }
 }
