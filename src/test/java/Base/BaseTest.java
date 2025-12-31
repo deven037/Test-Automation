@@ -23,4 +23,8 @@ public class BaseTest {
         // Quit WebDriver
         DriverFactory.quitDriver();
     }
+    
+    public WebDriver getDriver() {
+        return driver;
+    }
 }
