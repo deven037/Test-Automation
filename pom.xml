@@ -45,14 +45,28 @@
     <build>
         <plugins>
 
+            <!-- Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
+
                 <configuration>
+
+                    <!-- 🔥 SHOW TEST NAMES IN CONSOLE (LOCAL + JENKINS) -->
+                    <printSummary>true</printSummary>
+                    <useFile>false</useFile>
+                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+
+                    <!-- 🔥 REAL-TIME LOGGING -->
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+
+                    <!-- TestNG suite -->
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+
                 </configuration>
             </plugin>
 

@@ -30,7 +30,6 @@ public class BasePage {
         return getElement(locator).isDisplayed();
     }
 
-    // ✅ ADD THIS METHOD
     protected String getText(By locator) {
         return getElement(locator).getText();
     }
