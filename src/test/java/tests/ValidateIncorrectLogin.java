@@ -16,13 +16,12 @@ public class ValidateIncorrectLogin extends BaseTest {
 	  lp.enterPassword("Password123");
 	  lp.clickLogin();
 	  
-	  String incorrectUserMsg = "";
 
 	  if(lp.isLoginUnsuccessfull()) {
-		  incorrectUserMsg = lp.getIncorrectUserMsg();
+		 String incorrectUserMsg = lp.getIncorrectUserMsg();
+		  Assert.assertTrue(incorrectUserMsg.contains("Your username is invalid!"));
 	  }
 	  
-	  Assert.assertTrue(incorrectUserMsg.contains("Your username is invalid!"));
 	  
   }
 }
