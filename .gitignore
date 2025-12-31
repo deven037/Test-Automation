@@ -14,8 +14,6 @@ bin
 test-output/
 surefire-reports/
 failsafe-reports/
-/reports
-/target
 
 # ===== Eclipse =====
 .project
