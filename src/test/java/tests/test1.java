@@ -3,8 +3,8 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Base.BaseTest;
 import Pages.LoginPage;
-import base.BaseTest;
 
 public class test1 extends BaseTest {
 
