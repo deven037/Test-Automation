@@ -1,7 +1,8 @@
 package tests;
 
 import Base.BaseTest;
-import org.openqa.selenium.By;
+import Pages.LoginPage;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,12 +10,14 @@ public class test1 extends BaseTest {
 
     @Test
     public void validLoginTest() {
+    	
+    	LoginPage lp = new LoginPage(driver);
 
-        driver.findElement(By.id("username")).sendKeys("student");
-        driver.findElement(By.id("password")).sendKeys("Password123");
-        driver.findElement(By.id("submit")).click();
+    	lp.enterUsername("student");
+    	lp.enterPassword("Password123");
+        lp.clickLogin();
 
-        String text = driver.findElement(By.tagName("h1")).getText();
-        Assert.assertTrue(text.contains("Logged In"));
+        String text = lp.getSuccessMessage();
+        Assert.assertTrue(text.contains("Congratulations student. You successfully logged in!"));
     }
 }

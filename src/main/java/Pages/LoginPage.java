@@ -12,6 +12,7 @@ public class LoginPage extends BasePage {
     private By successMsg = By.cssSelector(
         "#loop-container div.post-content p.has-text-align-center"
     );
+    private By incorrectuserMsg = By.id("error");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -35,5 +36,13 @@ public class LoginPage extends BasePage {
 
     public String getSuccessMessage() {
         return getText(successMsg);
+    }
+    
+    public boolean isLoginUnsuccessfull() {
+    	return isDisplayed(incorrectuserMsg);
+    }
+    
+    public String getIncorrectUserMsg() {
+    	return getText(incorrectuserMsg);
     }
 }
