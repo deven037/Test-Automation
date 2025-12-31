@@ -1,19 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        REPORT_DIR = "${WORKSPACE}/reports/build-${BUILD_NUMBER}"
-    }
-
     stages {
 
-        stage('Clean Workspace') {
-            steps {
-                deleteDir()
-            }
-        }
-
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
@@ -21,24 +11,23 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                script {
-                    sh """
-                    mkdir -p ${REPORT_DIR}
-                    mvn test -Dsurefire.reportDirectory=${REPORT_DIR}
-                    """
-                }
+                bat 'mvn clean test'
             }
         }
+    }
 
-        stage('Publish Report') {
-            steps {
-                publishHTML(target: [
-                    reportDir: "reports/build-${BUILD_NUMBER}",
-                    reportFiles: 'index.html',
-                    reportName: "Test Report - Build ${BUILD_NUMBER}",
-                    keepAll: true
-                ])
-            }
+    post {
+        always {
+            publishHTML([
+                reportName: 'Test Report',
+                reportDir: 'reports',
+                reportFiles: 'index.html',
+                keepAll: true,
+                alwaysLinkToLastBuild: false,
+                allowMissing: false
+            ])
+
+            archiveArtifacts artifacts: 'reports/**', fingerprint: true
         }
     }
 }
