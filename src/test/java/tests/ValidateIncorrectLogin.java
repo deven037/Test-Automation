@@ -16,7 +16,7 @@ public class ValidateIncorrectLogin extends BaseTest {
 	  lp.enterPassword("Password123");
 	  lp.clickLogin();
 	  
-	  String incorrectUserMsg = null;
+	  String incorrectUserMsg = "";
 
 	  if(lp.isLoginUnsuccessfull()) {
 		  incorrectUserMsg = lp.getIncorrectUserMsg();
