@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        REPORT_DIR = "${WORKSPACE}/reports/build-${BUILD_NUMBER}"
+        REPORT_DIR = "${WORKSPACE}\\reports\\build-${BUILD_NUMBER}"
     }
 
     stages {
@@ -21,12 +21,11 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                script {
-                    sh """
-                    mkdir -p ${REPORT_DIR}
-                    mvn test -Dsurefire.reportDirectory=${REPORT_DIR}
-                    """
-                }
+                bat """
+                echo Running tests...
+                mkdir "%REPORT_DIR%"
+                mvn test -Dsurefire.reportDirectory="%REPORT_DIR%"
+                """
             }
         }
 
