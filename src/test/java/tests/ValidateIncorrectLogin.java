@@ -11,6 +11,8 @@ public class ValidateIncorrectLogin extends BaseTest {
 	
   @Test
   public void validateIncorrectLogin() {
+	  
+	  navigateTo("practice_url");
 	  LoginPage lp = new LoginPage(driver);
 	
 	  waitForUrl("https://practicetestautomation.com/practice-test-login/");

@@ -10,5 +10,11 @@
             <package name="tests"/>
         </packages>
     </test>
+    
+    <test name="Flights Booking">
+        <packages>
+            <package name="flight"/>
+        </packages>
+    </test>
 
 </suite>

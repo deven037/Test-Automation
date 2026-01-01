@@ -1,15 +1,21 @@
 package tests;
 
-import Base.BaseTest;
+
 import Pages.LoginPage;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Base.BaseTest;
+
+
+
 public class test1 extends BaseTest {
 
     @Test
     public void validLoginTest() {
+    	
+    	navigateTo("practice_url");
     	
     	LoginPage lp = new LoginPage(driver);
 

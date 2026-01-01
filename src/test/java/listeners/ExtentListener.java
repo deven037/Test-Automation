@@ -12,23 +12,19 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ExtentListener implements ITestListener {
+public class ExtentListener implements ITestListener, ISuiteListener {
 
     private static ExtentReports extent = ExtentManager.getExtent();
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
-    // Maintains test order + status
+    // Maintains execution order + final status
     private static final Map<String, String> testResults = new LinkedHashMap<>();
 
-    // =========================================================
-    // PRINT ALL TESTS BEFORE EXECUTION (ONCE)
-    // =========================================================
+    /* =========================================================
+       SUITE START → PRINT TESTS TO BE EXECUTED (ONCE)
+       ========================================================= */
     @Override
-    public void onStart(ITestContext context) {
-
-        for (ITestNGMethod method : context.getAllTestMethods()) {
-            testResults.put(method.getMethodName(), "PENDING");
-        }
+    public void onStart(ISuite suite) {
 
         System.out.println("\n================= TESTS TO BE EXECUTED =================");
         System.out.println("+----+--------------------------+");
@@ -36,25 +32,29 @@ public class ExtentListener implements ITestListener {
         System.out.println("+----+--------------------------+");
 
         AtomicInteger index = new AtomicInteger(1);
-        testResults.keySet().forEach(testName -> {
-            System.out.printf("| %-2d | %-24s |\n",
-                    index.getAndIncrement(), testName);
+        suite.getAllMethods().forEach(method -> {
+            String testName = method.getMethodName();
+            if (!testResults.containsKey(testName)) {
+                testResults.put(testName, "PENDING");
+                System.out.printf("| %-2d | %-24s |\n",
+                        index.getAndIncrement(), testName);
+            }
         });
 
         System.out.println("+----+--------------------------+");
     }
 
-    // =========================================================
-    // TEST START
-    // =========================================================
+    /* =========================================================
+       TEST START
+       ========================================================= */
     @Override
     public void onTestStart(ITestResult result) {
         test.set(extent.createTest(result.getMethod().getMethodName()));
     }
 
-    // =========================================================
-    // TEST SUCCESS
-    // =========================================================
+    /* =========================================================
+       TEST SUCCESS
+       ========================================================= */
     @Override
     public void onTestSuccess(ITestResult result) {
 
@@ -62,14 +62,12 @@ public class ExtentListener implements ITestListener {
         testResults.put(testName, "PASS");
 
         test.get().pass("Test passed");
-
-        // 🔥 PROGRESS LOG
         System.out.println("FINISHED TEST : " + testName);
     }
 
-    // =========================================================
-    // TEST FAILURE
-    // =========================================================
+    /* =========================================================
+       TEST FAILURE
+       ========================================================= */
     @Override
     public void onTestFailure(ITestResult result) {
 
@@ -77,8 +75,6 @@ public class ExtentListener implements ITestListener {
         testResults.put(testName, "FAIL");
 
         test.get().fail(result.getThrowable());
-
-        // 🔥 PROGRESS LOG
         System.out.println("FINISHED TEST : " + testName);
 
         Object instance = result.getInstance();
@@ -86,8 +82,7 @@ public class ExtentListener implements ITestListener {
             BaseTest baseTest = (BaseTest) instance;
 
             String path = ScreenshotUtil.captureScreenshot(
-                    baseTest.getDriver(),
-                    testName
+                    baseTest.getDriver(), testName
             );
 
             if (path != null) {
@@ -96,9 +91,9 @@ public class ExtentListener implements ITestListener {
         }
     }
 
-    // =========================================================
-    // TEST SKIPPED (OPTIONAL)
-    // =========================================================
+    /* =========================================================
+       TEST SKIPPED
+       ========================================================= */
     @Override
     public void onTestSkipped(ITestResult result) {
 
@@ -106,15 +101,14 @@ public class ExtentListener implements ITestListener {
         testResults.put(testName, "SKIPPED");
 
         test.get().skip("Test skipped");
-
         System.out.println("FINISHED TEST (SKIPPED) : " + testName);
     }
 
-    // =========================================================
-    // FINAL RESULT TABLE (ONCE)
-    // =========================================================
+    /* =========================================================
+       SUITE FINISH → PRINT FINAL RESULTS (ONCE)
+       ========================================================= */
     @Override
-    public void onFinish(ITestContext context) {
+    public void onFinish(ISuite suite) {
 
         System.out.println("\n================= TEST RESULTS =================");
         System.out.println("+----+--------------------------+--------+");
