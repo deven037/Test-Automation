@@ -27,6 +27,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLogin() {
+    	wait.waitForVisiblity(loginBtn);
         click(loginBtn);
     }
 
@@ -41,6 +42,7 @@ public class LoginPage extends BasePage {
     public boolean isLoginUnsuccessfull() {
     	return isDisplayed(incorrectuserMsg);
     }
+    
     
     public String getIncorrectUserMsg() {
     	return getText(incorrectuserMsg);
