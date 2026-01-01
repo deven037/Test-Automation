@@ -32,7 +32,7 @@ public class FlightBook extends BasePage {
 	private By search = By.xpath("//*[@id=\"basiclayout\"]/div/div/div[2]/div/div/div/div[2]/div/div/button/span");
 	private By searchResultLoader = By.xpath("//*[@id=\"basiclayout\"]/div/div/div[3]/div/div[1]/div");
 	
-	private By result = By.xpath("//*[@id=\"BEST\"]/div[1]/ul");
+	private By result = By.cssSelector("#flight-card-0 > div");
 	
 	public void selectFlight() {
 		wait.waitForVisiblity(flight);

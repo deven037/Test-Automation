@@ -31,14 +31,38 @@ public class WaitUtil {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
     
+//    public void waitForInteractableAndClick(By locator) {
+//        try {
+//            waitForClickability(locator).click();
+//        } catch (ElementClickInterceptedException e) {
+//        	dismissOverlayIfPresent();
+//            waitForClickability(locator).click();
+//        }
+//    }
+    
     public void waitForInteractableAndClick(By locator) {
+
+        WebElement element = wait.until(
+                ExpectedConditions.presenceOfElementLocated(locator)
+        );
+
         try {
-            waitForClickability(locator).click();
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    element
+            );
+
+            wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+
         } catch (ElementClickInterceptedException e) {
-        	dismissOverlayIfPresent();
-            waitForClickability(locator).click();
+            dismissOverlayIfPresent();
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].click();",
+                    element
+            );
         }
     }
+
 
     
     public void dismissOverlayIfPresent() {
