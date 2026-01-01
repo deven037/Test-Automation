@@ -3,13 +3,18 @@ package base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utils.WaitUtil;
 
 public class BasePage {
 
     protected WebDriver driver;
+    protected WaitUtil wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WaitUtil(driver, 10);
     }
 
     protected WebElement getElement(By locator) {
