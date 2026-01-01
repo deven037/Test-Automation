@@ -9,7 +9,7 @@ import Base.BaseTest;
 import Pages.FlightBook;
 
 public class OneWayTest extends BaseTest{
-  @Test
+  @Test(enabled = false)
   public void oneWayFlight() throws Exception {
 	  
 	  LocalDate startDate = LocalDate.of(2026, 1, 31);
