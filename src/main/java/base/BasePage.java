@@ -3,7 +3,6 @@ package base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.WaitUtil;
 
@@ -14,7 +13,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitUtil(driver, 10);
+        this.wait = new WaitUtil(driver, 30);
     }
 
     protected WebElement getElement(By locator) {
@@ -38,4 +37,14 @@ public class BasePage {
     protected String getText(By locator) {
         return getElement(locator).getText();
     }
+    
+    protected void chooseFlightType(By locator) {
+    	getElement(locator).click();
+    }
+    
+    protected void customTimeout(int seconds) throws Exception {
+    	Thread.sleep(seconds * 1000L);
+        Thread.currentThread().interrupt();
+    }
+    
 }
