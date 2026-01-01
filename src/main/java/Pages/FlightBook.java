@@ -23,7 +23,7 @@ public class FlightBook extends BasePage {
 	private By arrival = By.xpath("//*[@id=\"basiclayout\"]/div/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div[1]/div/button[3]");
 	
 	private By enterDepart = By.xpath("//*[@id=\":Rh6l19dl:\"]/div/div/div/div[1]/div/div/div/div/input");
-	private By enterArrival = By.xpath("/html/body/div[15]/div/div/div/div[2]/div/div/div/div/input");
+	private By enterArrival = By.cssSelector("input[data-ui-name='input_text_autocomplete']");
 	private By calendar = By.xpath("//*[@id=\"basiclayout\"]/div/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div[2]/button");
 	
 	private By clickRecommendedDeparture = By.xpath("//*[@id=\"flights-searchbox_suggestions\"]");
@@ -32,7 +32,7 @@ public class FlightBook extends BasePage {
 	private By search = By.xpath("//*[@id=\"basiclayout\"]/div/div/div[2]/div/div/div/div[2]/div/div/button/span");
 	private By searchResultLoader = By.xpath("//*[@id=\"basiclayout\"]/div/div/div[3]/div/div[1]/div");
 	
-	private By result = By.xpath("/html/body/div[1]/div[3]/main/div/div/div[2]/div/div/div/div/div[2]/div[2]/nav/div[2]/div[1]/ul/li[1]/div/div[1]/div");
+	private By result = By.cssSelector("#airlines_filter");
 	
 	
 	
