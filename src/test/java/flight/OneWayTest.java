@@ -26,6 +26,8 @@ public class OneWayTest extends BaseTest{
 	  System.out.println("calendar is openend.....");
 	  flightBook.selectStartDate(startDate);
 	  flightBook.clickSearch();
+	  flightBook.waitForResultLoaderDisapper();
+	  System.out.println("Result loader disappered....");
 	  verifyResults();
   }
   
