@@ -67,6 +67,10 @@ public class WaitUtil {
     public boolean waitForElementInvisibility(By locator) {
     	return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
+    
+    public WebElement waitForPresence(By locator) {
+    	return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
 
     
     /////click backspace/////

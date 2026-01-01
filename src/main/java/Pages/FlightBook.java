@@ -125,7 +125,7 @@ public class FlightBook extends BasePage {
     }
     
     public boolean results() {
-    	return wait.waitForVisiblity(result).isDisplayed();
+    	return wait.waitForPresence(result).isDisplayed();
     }
     
 }
