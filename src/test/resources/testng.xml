@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Automation Suite">
+
+<suite name="Automation Suite"
+       parallel="classes"
+       thread-count="2">
 
     <listeners>
         <listener class-name="listeners.ExtentListener"/>
@@ -10,7 +13,7 @@
             <package name="tests"/>
         </packages>
     </test>
-    
+
     <test name="Flights Booking">
         <packages>
             <package name="flight"/>
