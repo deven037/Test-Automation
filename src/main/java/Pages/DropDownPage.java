@@ -28,33 +28,33 @@ public class DropDownPage extends BasePage {
 	private By successMsg = By.xpath("/html/body/div[3]/div/div/div[2]/p");
 	
 	public void selectPrefix(String prefixText) {
-		click(prefix);
+		
 		selectFromDropDown(prefix, prefixText);
 	}
 	
 	public void selectDOB(String dates, String months, String years) {
-		click(month);
+		
 		selectFromDropDown(month, months);
 		
-		click(date);
+		
 		selectFromDropDown(date, dates);
 		
-		click(year);
+		
 		selectFromDropDown(year, years);
 	}
 	
 	public void selectMobileCode(String code) {
-		click(phCityCode);
+		
 		selectFromDropDown(phCityCode, code);
 	}
 	
 	public void selectNation(String nation) {
-		click(nationality);
+		
 		selectFromDropDown(nationality, nation);
 	}
 	
 	public void selectCountry(String countryy) {
-		click(country);
+		
 		selectFromDropDown(country, countryy);
 	}
 	
