@@ -1,5 +1,6 @@
 package dropdown;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Base.BaseTest;
@@ -22,6 +23,8 @@ public class DropDown extends BaseTest {
   
   protected void verifyMsg() {
 	  DropDownPage dp = new DropDownPage(driver);
-	  dp.verifySuccessMsg();
+	  String message = dp.getSuccessMsg();
+	  
+	  Assert.assertEquals(message, message);
   }
 }

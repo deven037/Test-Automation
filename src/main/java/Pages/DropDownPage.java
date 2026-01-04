@@ -3,7 +3,6 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 import base.BasePage;
 
@@ -55,9 +54,9 @@ public class DropDownPage extends BasePage {
 		click(submit);
 	}
 	
-	public void verifySuccessMsg() {
+	public String getSuccessMsg() {
 		String msg = getText(successMsg);
-		Assert.assertTrue(msg.contains(msg));
+		return msg;
 	}
 
 }

@@ -19,5 +19,11 @@
             <package name="flight"/>
         </packages>
     </test>
+    
+    <test name="Dropdowns">
+    	<packages>
+    		<package name="dropdown"/>
+    	</packages>
+    </test>
 
 </suite>
