@@ -24,7 +24,7 @@ public class DropDownPage extends BasePage {
 	private By nationality = By.xpath("//*[@id=\"nationality\"]");
 	private By country = By.xpath("//*[@id=\"country\"]");
 	
-	private By submit = By.xpath("/html/body/div[3]/div/div[2]/div/form/div[15]/div[2]/input");
+	private By submit = By.cssSelector("input[type='submit']");
 	private By successMsg = By.xpath("/html/body/div[3]/div/div/div[2]/p");
 	
 	public void selectPrefix(String prefixText) {
