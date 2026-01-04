@@ -3,6 +3,7 @@ package base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import utils.WaitUtil;
 
@@ -45,6 +46,12 @@ public class BasePage {
     protected void customTimeout(int seconds) throws Exception {
     	Thread.sleep(seconds * 1000L);
         Thread.currentThread().interrupt();
+    }
+    
+    protected void selectFromDropDown(By locator, String text) {
+    	WebElement dropDown =  wait.waitForVisiblity(locator);
+    	Select select = new Select(dropDown);
+    	select.selectByVisibleText(text);
     }
     
 }
