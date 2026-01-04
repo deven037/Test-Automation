@@ -1,5 +1,7 @@
 package base;
 
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,6 +54,30 @@ public class BasePage {
     	WebElement dropDown =  wait.waitForClickability(locator);
     	Select select = new Select(dropDown);
     	select.selectByVisibleText(text);
+    }
+    
+    protected String getCurrentWindow() {
+    	return driver.getWindowHandle();
+    }
+    
+    protected void switchToWindow(String windowHandle) {
+    	driver.switchTo().window(windowHandle);
+    }
+    
+    protected void closeCurrentWindow() {
+    	driver.close();
+    }
+    
+    protected void switchToNewWindow(String parentWindow) {
+
+        Set<String> allWindows = driver.getWindowHandles();
+
+        for (String window : allWindows) {
+            if (!window.equals(parentWindow)) {
+                driver.switchTo().window(window);
+                break;
+            }
+        }
     }
     
 }
