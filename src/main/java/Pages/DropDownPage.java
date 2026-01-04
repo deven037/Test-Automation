@@ -28,26 +28,33 @@ public class DropDownPage extends BasePage {
 	private By successMsg = By.xpath("/html/body/div[3]/div/div/div[2]/p");
 	
 	public void selectPrefix(String prefixText) {
-//		wait.waitForInteractableAndClick(prefix);
-//		click(prefix);
+		wait.waitForInteractableAndClick(prefix);
 		selectFromDropDown(prefix, prefixText);
 	}
 	
 	public void selectDOB(String dates, String months, String years) {
+		wait.waitForInteractableAndClick(month);
 		selectFromDropDown(month, months);
+		
+		wait.waitForInteractableAndClick(date);
 		selectFromDropDown(date, dates);
+		
+		wait.waitForInteractableAndClick(year);
 		selectFromDropDown(year, years);
 	}
 	
 	public void selectMobileCode(String code) {
+		wait.waitForInteractableAndClick(phCityCode);
 		selectFromDropDown(phCityCode, code);
 	}
 	
 	public void selectNation(String nation) {
+		wait.waitForInteractableAndClick(nationality);
 		selectFromDropDown(nationality, nation);
 	}
 	
 	public void selectCountry(String countryy) {
+		wait.waitForInteractableAndClick(country);
 		selectFromDropDown(country, countryy);
 	}
 	
