@@ -22,7 +22,7 @@ public class BasePage {
     }
 
     protected void click(By locator) {
-        getElement(locator).click();
+        wait.waitForClickability(locator).click();
     }
 
     protected void type(By locator, String text) {
@@ -49,7 +49,7 @@ public class BasePage {
     }
     
     protected void selectFromDropDown(By locator, String text) {
-    	WebElement dropDown =  wait.waitForVisiblity(locator);
+    	WebElement dropDown =  wait.waitForClickability(locator);
     	Select select = new Select(dropDown);
     	select.selectByVisibleText(text);
     }

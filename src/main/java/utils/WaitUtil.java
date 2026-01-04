@@ -28,7 +28,24 @@ public class WaitUtil {
     }
     
     public WebElement waitForClickability(By locator) {
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+        WebElement element =
+                wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+    
+        ((JavascriptExecutor) driver)
+                .executeScript(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    element
+                );
+
+        ((JavascriptExecutor) driver)
+                .executeScript(
+                    "arguments[0].focus();",
+                    element
+                );
+
+        return element;
     }
     
 //    public void waitForInteractableAndClick(By locator) {
