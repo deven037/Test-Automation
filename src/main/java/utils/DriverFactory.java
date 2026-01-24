@@ -1,5 +1,8 @@
 package utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,6 +25,15 @@ public class DriverFactory {
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-features=FedCM"); // 👈 KEY FIX
+        options.addArguments("--disable-application-cache");
+        
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("autofill.profile_enabled", false);  
+        prefs.put("autofill.credit_card_enabled", false);
+
+        options.setExperimentalOption("prefs", prefs);
 
        
         String ci = System.getenv("CI");

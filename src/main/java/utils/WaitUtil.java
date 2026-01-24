@@ -120,5 +120,20 @@ public class WaitUtil {
         .sendKeys(Keys.BACK_SPACE)
         .perform();
     }
+    
+    public void waitForOptions(By dropdownLocator, int requiredOptionCount) {
+
+        if (requiredOptionCount <= 0) {
+            throw new IllegalArgumentException(
+                "Required option count must be >= 1. Given: " + requiredOptionCount
+            );
+        }
+
+        wait.until(d -> {
+            Select select = new Select(d.findElement(dropdownLocator));
+            return select.getOptions().size() >= requiredOptionCount;
+        });
+    }
+
 
 }
