@@ -56,6 +56,22 @@ public class BasePage {
     	select.selectByVisibleText(text);
     }
     
+    protected void selectFromDropDownByOption(By locator, int optionNumber) {
+
+        if (optionNumber <= 0) {
+            throw new IllegalArgumentException(
+                "Option number must be >= 1. Given: " + optionNumber
+            );
+        }
+
+        WebElement dropDown = wait.waitForClickability(locator);
+        wait.waitForOptions(locator, optionNumber);
+
+        Select select = new Select(dropDown);
+        select.selectByIndex(optionNumber - 1);
+    }
+
+    
     protected String getCurrentWindow() {
     	return driver.getWindowHandle();
     }

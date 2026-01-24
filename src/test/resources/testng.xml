@@ -25,5 +25,11 @@
     		<package name="dropdown"/>
     	</packages>
     </test>
+    
+    <test name="Para Bank">
+    	<packages>
+    		<package name="parabank"/>
+    	</packages>
+    </test>
 
 </suite>
