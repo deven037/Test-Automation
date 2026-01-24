@@ -16,9 +16,6 @@ public class BaseTest {
     public void setup() {
         driver = DriverFactory.initDriver();
         driver.manage().window().maximize();
-        driver.manage().window().setSize(
-        	    new Dimension(1920, 1080)
-        	);
     }
 
   
