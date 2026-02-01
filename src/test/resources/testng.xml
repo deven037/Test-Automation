@@ -32,4 +32,10 @@
     	</packages>
     </test>
 
+    <test name="Test Store">
+        <packages>
+            <package name="store"/>
+        </packages>
+    </test>
+
 </suite>

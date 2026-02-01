@@ -1,10 +1,12 @@
 package base;
 
+import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import utils.WaitUtil;
@@ -21,6 +23,10 @@ public class BasePage {
 
     protected WebElement getElement(By locator) {
         return driver.findElement(locator);
+    }
+
+    protected List<WebElement> getElements(By locator) {
+        return driver.findElements(locator);
     }
 
     protected void click(By locator) {
@@ -94,6 +100,12 @@ public class BasePage {
                 break;
             }
         }
+    }
+
+    protected void hover(By locator){
+        WebElement element = wait.waitForVisiblity(locator);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
     }
     
 }
