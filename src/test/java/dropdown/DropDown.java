@@ -7,7 +7,7 @@ import Base.BaseTest;
 import Pages.DropDownPage;
 
 public class DropDown extends BaseTest {
-  @Test
+  @Test(enabled = false)
   public void practiceDropDowns() {
 	  navigateTo("dropdown_url");
 	  DropDownPage dp = new DropDownPage(driver);

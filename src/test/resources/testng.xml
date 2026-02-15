@@ -2,7 +2,7 @@
 
 <suite name="Automation Suite"
        parallel="classes"
-       thread-count="2">
+       thread-count="4">
 
     <listeners>
         <listener class-name="listeners.ExtentListener"/>
