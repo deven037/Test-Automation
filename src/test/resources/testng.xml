@@ -2,7 +2,7 @@
 
 <suite name="Automation Suite"
        parallel="classes"
-       thread-count="2">
+       thread-count="4">
 
     <listeners>
         <listener class-name="listeners.ExtentListener"/>
@@ -30,6 +30,12 @@
     	<packages>
     		<package name="parabank"/>
     	</packages>
+    </test>
+
+    <test name="Test Store">
+        <packages>
+            <package name="store"/>
+        </packages>
     </test>
 
 </suite>

@@ -1,5 +1,6 @@
 package Pages;
 
+import exceptions.Errors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -54,6 +55,8 @@ public class ParaBankPage extends BasePage {
 	
 	private By getCreatedAccountNumber = By.xpath("//*[@id=\"newAccountId\"]");
 	private By getCreatedAccountNumberFromAccountDetails = By.xpath("//*[@id=\"accountId\"]");
+
+    private By errorOnCreateAccount = By.xpath("//*[@id=\"openAccountError\"]/p");
 	 
 	
 	
@@ -116,8 +119,18 @@ public class ParaBankPage extends BasePage {
 	}
 	
 	public void selectAccountNumberFromDropDown(int option) {
-		click(accountIdDropDown);
-		selectFromDropDownByOption(accountIdDropDown, option);
+        if(getElement(accountIdDropDown).isDisplayed()){
+            try {
+                click(accountIdDropDown);
+                selectFromDropDownByOption(accountIdDropDown, option);
+            } catch (Exception e){
+                throw new Errors(Errors.ErrorType.DATA_ISSUE, "Locator not present");
+            }
+
+        } else {
+            String errorMsg = getText(errorOnCreateAccount);
+            throw new Errors(Errors.ErrorType.DATA_ISSUE, errorMsg);
+        }
 	}
 	
 	public void clickOpenAccountBtn() {
