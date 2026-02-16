@@ -40,6 +40,7 @@ public class DriverFactory {
         String ci = System.getenv("CI");
         if (ci != null && ci.equalsIgnoreCase("true")) {
             options.addArguments("--headless=new");
+            options.addArguments("--start-maximized");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--disable-gpu");
