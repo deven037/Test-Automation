@@ -12,7 +12,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
-   
+
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver initDriver() {
@@ -27,16 +27,16 @@ public class DriverFactory {
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-features=FedCM"); // 👈 KEY FIX
         options.addArguments("--disable-application-cache");
-        
+
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
-        prefs.put("autofill.profile_enabled", false);  
+        prefs.put("autofill.profile_enabled", false);
         prefs.put("autofill.credit_card_enabled", false);
 
         options.setExperimentalOption("prefs", prefs);
 
-       
+
         String ci = System.getenv("CI");
         if (ci != null && ci.equalsIgnoreCase("true")) {
             options.addArguments("--headless=new");
@@ -44,7 +44,6 @@ public class DriverFactory {
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--disable-gpu");
             options.addArguments("--window-size=1920,1080");
-            options.addArguments("--force-device-scale-factor=1");
         } else {
             options.addArguments("--start-maximized");
         }
@@ -53,8 +52,6 @@ public class DriverFactory {
         driver.set(driverInstance);
 
         if (ci != null && ci.equalsIgnoreCase("true")) {
-            driverInstance.manage().window().setSize(new Dimension(1920, 1080));
-        } else {
             driverInstance.manage().window().maximize();
         }
 
