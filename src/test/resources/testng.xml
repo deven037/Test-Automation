@@ -38,4 +38,10 @@
         </packages>
     </test>
 
+    <test name="API Tests">
+        <packages>
+            <package name="api"/>
+        </packages>
+    </test>
+
 </suite>
