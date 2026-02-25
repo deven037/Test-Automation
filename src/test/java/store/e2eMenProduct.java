@@ -3,14 +3,21 @@ package store;
 import Base.BaseTest;
 import Pages.StorePage;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class e2eMenProduct extends BaseTest {
 
+    private StorePage store;
+
+    @BeforeMethod
+    public void paraSetup() {
+        navigateTo("test_store");
+        store = new StorePage(driver);
+    }
+
     @Test
     public void validateMenProductPurchase() {
-        navigateTo("test_store");
-        StorePage store = new StorePage(driver);
         store.login();
         store.chooseSkinCareMen();
         store.selectProductByName("EYE MASTER");
